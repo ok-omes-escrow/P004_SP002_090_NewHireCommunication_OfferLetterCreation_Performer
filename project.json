@@ -1,9 +1,12 @@
 {
-  "name": "P004_SP002_090_NewHireCommunication_OfferLetterCreation_Performer",
+  "name": "P004_SP002_090_NHC_OfferLetterCreation_Dispatcher",
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
+    "O365MailActivities_00.00.Library.Runtime": "[1.0.1]",
+    "System.Text.RegularExpressions": "[4.3.1]",
     "UiPath.Excel.Activities": "[2.20.2]",
+    "UiPath.PDF.Activities": "[3.16.0]",
     "UiPath.System.Activities": "[23.4.5]",
     "UiPath.Testing.Activities": "[23.4.1]",
     "UiPath.UIAutomation.Activities": "[23.4.8]"
@@ -44,42 +47,42 @@
     "fileInfoCollection": [
       {
         "editingStatus": "InProgress",
-        "testCaseId": "ce0a75c8-50d3-446a-89b0-b6dad1deefbd",
+        "testCaseId": "7cd4d2d1-401f-4528-b69a-d9fbef293220",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\GetTransactionDataTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "f998ec1b-87e3-4597-b638-750ce9807c7b",
+        "testCaseId": "c43b8a4b-444b-451b-a1b3-24088e92eee2",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\InitAllApplicationsTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "74dff2f2-294d-4db1-883c-1023c83a5137",
+        "testCaseId": "0a177236-39d9-45d8-adff-506ae2244e88",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\InitAllSettingsTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "078e47db-3074-4a7d-9fc3-65544106310b",
+        "testCaseId": "45ea4b80-7beb-4e96-85c1-879d4a7c04d1",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\MainTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "960870a0-d413-4a44-b9e3-74234886439e",
+        "testCaseId": "8c7bc574-13eb-48e2-a969-a41731f2cef8",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\ProcessTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "82e61eb0-b6d7-427a-aaad-ee5cbf0eddb8",
+        "testCaseId": "c1a95437-7dbe-4e67-b616-31b962a4863a",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\WorkflowTestCaseTemplate.xaml"
@@ -91,7 +94,7 @@
   "entryPoints": [
     {
       "filePath": "Main.xaml",
-      "uniqueId": "49f25e32-39ff-44f7-800f-352274581cf6",
+      "uniqueId": "6a1303b5-911c-402b-b647-42bfb8101486",
       "input": [],
       "output": []
     }
