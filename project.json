@@ -1,5 +1,5 @@
 {
-  "name": "P004_SP002_090_NHC_OfferLetterCreation_Dispatcher",
+  "name": "P004_SP002_090_NHC_OfferLetterCreation_Performer",
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
@@ -9,7 +9,8 @@
     "UiPath.PDF.Activities": "[3.16.0]",
     "UiPath.System.Activities": "[23.4.5]",
     "UiPath.Testing.Activities": "[23.4.1]",
-    "UiPath.UIAutomation.Activities": "[23.4.8]"
+    "UiPath.UIAutomation.Activities": "[23.4.8]",
+    "UiPath.Word.Activities": "[1.18.1]"
   },
   "webServices": [],
   "entitiesStores": [],
