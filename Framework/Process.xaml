@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1202,887</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1019,1266</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -38,6 +38,9 @@
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -89,16 +92,26 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="450,822" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="450,1201" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="candidateServiceStartDate" />
+      <Variable x:TypeArguments="s:DateTime" Name="candidateServiceStartDate" />
       <Variable x:TypeArguments="x:String" Name="candidateJobProfile" />
       <Variable x:TypeArguments="x:String" Name="candidateAddress" />
       <Variable x:TypeArguments="x:String" Name="candidateCity" />
       <Variable x:TypeArguments="x:String" Name="candidateState" />
       <Variable x:TypeArguments="x:String" Name="candidateZip" />
+      <Variable x:TypeArguments="x:String" Name="offerLetterTemplateName" />
+      <Variable x:TypeArguments="x:String" Name="offerLetterFilePath" />
+      <Variable x:TypeArguments="x:String" Name="offerLetterFileName" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -119,15 +132,64 @@
         <OutArgument x:TypeArguments="x:String" x:Key="out_Zip">[candidateZip]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item | Offer Letter Performer Queue" FolderPath="DEV" sap:VirtualizedContainerService.HintSize="388,194" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="P004_SP002_090_NHC_OLC_Performer_Queue" Reference="[in_TransactionItem.Reference.ToString]">
-      <ui:AddQueueItem.ItemInformation>
-        <InArgument x:TypeArguments="x:String" x:Key="First Name">[extractedFirstName]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Email">[extractedEmail]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Jr Number">[in_TransactionItem.SpecificContent("Jr Number").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Middle Name">[extractedMiddleName]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Last Name">[extractedLastName]</InArgument>
-      </ui:AddQueueItem.ItemInformation>
-    </ui:AddQueueItem>
-    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="388,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SelectOfferLetterTemplate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Word_Operations\SelectOfferLetterTemplate.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_JobProfile">[candidateJobProfile]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_ServiceStartDate">[candidateServiceStartDate]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_SelectedTemplate">[offerLetterTemplateName]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SaveAsOfferLetter.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Word_Operations\SaveAsOfferLetter.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WordTemplatePath">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;OfferLetterTemplateFolder&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_JobReference">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WordTemplateName">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="offerLetterTemplateName" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_OfferLetterFileName">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="offerLetterFileName" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_OfferLetterFilePath">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="offerLetterFilePath" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="FillFieldsInOfferLetter.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Word_Operations\FillFieldsInOfferLetter.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WordFileName">[offerLetterFilePath]</InArgument>
+        <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OfferLetterCity">[candidateCity]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OfferLetterState">[candidateState]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OfferLetterZip">[candidateZip]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OfferLetterAddress">[candidateAddress]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SendEmailToHRDirector.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Mail_Operations\SendEmailToHRDirector.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+        </InArgument>
+        <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
+          <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OfferLetterFilePath">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="offerLetterFilePath" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OfferLetterFileName">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="offerLetterFileName" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
   </Sequence>
 </Activity>

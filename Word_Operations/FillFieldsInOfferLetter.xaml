@@ -1,13 +1,17 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="FillFieldsInOfferLetter" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="FillFieldsInOfferLetter" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_WordFileName" Type="InArgument(x:String)" />
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_OfferLetterCity" Type="InArgument(x:String)" />
+    <x:Property Name="in_OfferLetterState" Type="InArgument(x:String)" />
+    <x:Property Name="in_OfferLetterZip" Type="InArgument(x:String)" />
+    <x:Property Name="in_OfferLetterAddress" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>967,892</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1498,3023</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FillFieldsInOfferLetter_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -85,35 +89,115 @@
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="FillFieldsInOfferLetter" sap:VirtualizedContainerService.HintSize="630,827" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="FillFieldsInOfferLetter" sap:VirtualizedContainerService.HintSize="706,2918" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="FullName" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="568,716" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="644,2807" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[in_WordFileName]" sap:VirtualizedContainerService.HintSize="530,510" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
+        <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[in_WordFileName]" sap:VirtualizedContainerService.HintSize="606,2579" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
           <p:WordApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WordDocument">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,400" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="572,2469" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <p:WordReplaceText Found="{x:Null}" Replace="{x:Null}" Search="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" ReplaceAll="True" />
-                <p:WordReadText Text="{x:Null}" DisplayName="Read Text" sap:VirtualizedContainerService.HintSize="434,85" sap2010:WorkflowViewState.IdRef="WordReadText_1" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Date" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[Today.ToLongDateString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterDate&quot;).ToString]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </p:WordReplaceText>
+                <If Condition="[String.IsNullOrEmpty(in_TransactionItem.SpecificContent(&quot;MiddleName&quot;).ToString)]" DisplayName="If | Middle Name is Empty" sap:VirtualizedContainerService.HintSize="510,522" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If.Then>
+                    <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[FullName]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[String.Concat(in_TransactionItem.SpecificContent("FirstName").ToString," ",in_TransactionItem.SpecificContent("LastName").ToString)]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[FullName]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[String.Concat(in_TransactionItem.SpecificContent("FirstName").ToString," ", in_TransactionItem.SpecificContent("MiddleName").ToString," ",in_TransactionItem.SpecificContent("LastName").ToString)]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Name" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[FullName]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterName&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Address" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_OfferLetterAddress]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterAddress&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | City" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_OfferLetterCity]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterCity&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | State" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[in_OfferLetterState]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterState&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Zip" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[in_OfferLetterZip]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterZip&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | LastName" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterLastName&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Job Title" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[in_TransactionItem.SpecificContent(&quot;JobTitle&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterJobTitle&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Salary" sap:VirtualizedContainerService.HintSize="510,164" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[in_TransactionItem.SpecificContent(&quot;Salary&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterSalary&quot;).ToString]" />
               </Sequence>
             </ActivityAction>
           </p:WordApplicationScope.Body>
         </p:WordApplicationScope>
       </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="610,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
     </TryCatch>
   </Sequence>
 </Activity>

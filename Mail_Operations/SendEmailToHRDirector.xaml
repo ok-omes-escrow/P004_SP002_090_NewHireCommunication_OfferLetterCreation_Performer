@@ -1,13 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Send_Email" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="clr-namespace:O365MailActivities_00_00;assembly=O365MailActivities_00.00" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Send_Email" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:l="clr-namespace:LIB_O365MailActivities_00_00;assembly=LIB_O365MailActivities_00.00" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_AppID" Type="InArgument(x:String)" />
-    <x:Property Name="in_TenantID" Type="InArgument(x:String)" />
-    <x:Property Name="in_AppSecret" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="in_OfferLetterFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_OfferLetterFileName" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1514,855</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1019,1384</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Send_Email_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -47,6 +48,9 @@
       <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
       <x:String>UiPath.MicrosoftOffice365.Activities.Mail</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>LIB_O365MailActivities_00_00</x:String>
+      <x:String>UiPath.Activities.System.Arrays</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -105,15 +109,47 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>LIB_O365MailActivities_00.00</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Send_Email" sap:VirtualizedContainerService.HintSize="450,790" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Send_Email" sap:VirtualizedContainerService.HintSize="496,1319" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="listAttachments" />
+      <Variable x:TypeArguments="x:String" Name="OfferLetterFileNameSigned" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | Start" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Send Email Workflow Started&quot;]" />
-    <o:Send_Email ApplicationID_Asset_Name="{x:Null}" Application_Secret_Asset_Name="{x:Null}" From_Email_Account="{x:Null}" Mail_Subject="{x:Null}" TenantID_Asset_Name="{x:Null}" Attachment_List="[New List(of String)]" CC_Email_Account="[{&quot;xxxx@xx.gov&quot;,&quot;xxxx@xx.gov&quot;}]" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="388,498" sap2010:WorkflowViewState.IdRef="Send_Email_2" Mail_Body="HTML body and Text body both are acceptable" To_Email_Account="[{&quot;xxxx@xx.gov&quot;,&quot;xxxx@xx.gov&quot;}]" />
+    <ui:LogMessage DisplayName="Log Message | Start" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Send Email Workflow Started&quot;]" />
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[listAttachments]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)">[New list(Of String)(new string(){in_OfferLetterFilePath})]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <l:Send_Email ApplicationID_Asset_Name="[in_Config(&quot;Office365_AppID&quot;).ToString]" Application_Secret_Asset_Name="[in_Config(&quot;Office365_AppSecret&quot;).ToString]" Attachment_List="[listAttachments]" CC_Email_Account="[{in_Config(&quot;BE_Contacts&quot;).ToString}]" DisplayName="Send Email" From_Email_Account="[in_Config(&quot;BotMailID&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,549" sap2010:WorkflowViewState.IdRef="Send_Email_3" Mail_Body="[string.Format(&quot;Hello Director,{0}{1}Please find the attached offer letter for your review.{2}{3}Regards,{4}Bot&quot;, Environment.NewLine, Environment.NewLine, Environment.NewLine, Environment.NewLine, Environment.NewLine)]" Mail_Subject="[in_Config(&quot;HRApprovalMailSubject&quot;).ToString +in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" Orchestrator_Folder_Path="DEV" TenantID_Asset_Name="[in_Config(&quot;Office365_TenantID&quot;).ToString]" To_Email_Account="[{in_Config(&quot;BE_Contacts&quot;).ToString}]" />
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[OfferLetterFileNameSigned]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_OfferLetterFileName.Replace(".docx",in_Config("OfferLetterSignedExtension").ToString)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DeferDate="[Today.AddDays(2)]" DisplayName="Add Queue Item" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,194" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
+      <ui:AddQueueItem.ItemInformation>
+        <InArgument x:TypeArguments="x:String" x:Key="OfferLetterFileName">[OfferLetterFileNameSigned]</InArgument>
+      </ui:AddQueueItem.ItemInformation>
+    </ui:AddQueueItem>
   </Sequence>
 </Activity>
