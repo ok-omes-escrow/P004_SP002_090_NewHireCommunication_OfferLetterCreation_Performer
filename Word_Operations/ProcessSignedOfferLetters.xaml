@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CheckForSignedOffers" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CheckForSignedOffers" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:l="clr-namespace:LIB_GraphAPI;assembly=LIB_GraphAPI" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1085,852</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1484,1616</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>CheckForSignedOffers_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -47,6 +47,22 @@
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.MicrosoftOffice365.Activities.Mail</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>LIB_GraphAPI</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Enums</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Models</x:String>
+      <x:String>UiPath.Shared.Services.Graph.Mail.Models</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Filters</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Mail.Enums</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Filters</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Enums</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -110,15 +126,25 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>LIB_GraphAPI</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CheckForSignedOffers" sap:VirtualizedContainerService.HintSize="496,498" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CheckForSignedOffers" sap:VirtualizedContainerService.HintSize="572,1551" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | Process Signed Offer Letters | Start" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Save Template as Offer Letter Workflow Started&quot;]">
+    <ui:LogMessage DisplayName="Log Message | Process Signed Offer Letters | Start" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Save Template as Offer Letter Workflow Started&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -126,74 +152,110 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch | Save Template as Offer Letter" sap:VirtualizedContainerService.HintSize="434,289" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch | Save Template as Offer Letter" sap:VirtualizedContainerService.HintSize="510,1259" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:ForEachFileX DisplayName="For Each File in Folder | Signed Offer Letter Folder" Folder="[in_Config(&quot;OfferLetterSignedFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="606,1413" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
-          <ui:ForEachFileX.Body>
-            <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
-              <ActivityAction.Argument1>
-                <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
-              </ActivityAction.Argument1>
-              <ActivityAction.Argument2>
-                <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-              </ActivityAction.Argument2>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="572,1155" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence sap:VirtualizedContainerService.HintSize="472,1009" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Boolean" Name="boolBGVFileFound" />
+            <Variable x:TypeArguments="x:Int32" Name="intFileCount" />
+            <Variable x:TypeArguments="x:Boolean" Name="boolSignedFileFound" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <l:Files_or_Folders_Exist DisplayName="Files or Folders Exist | Signed File" sap:VirtualizedContainerService.HintSize="410,498" sap2010:WorkflowViewState.IdRef="Files_or_Folders_Exist_2" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAssetName="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strSharepointFileFolderToSearch="[String.Concat(in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString,&quot;_&quot;,in_TransactionItem.SpecificContent(&quot;SharepointEmpName&quot;).ToString,&quot;_&quot;,in_Config(&quot;SignedLocalFolderPath&quot;).ToString).ToLower]" in_strSharepointSubfolder="[in_Config(&quot;SharepointSignedFolder&quot;).ToString]" in_strSharepointURL="[in_Config(&quot;SharepointSiteURL&quot;).ToString]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" out_boolResultFileFolderFound="[boolSignedFileFound]" out_intResultCount="[intFileCount]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </l:Files_or_Folders_Exist>
+          <If Condition="[boolSignedFileFound And intFileCount =1]" sap:VirtualizedContainerService.HintSize="410,360" sap2010:WorkflowViewState.IdRef="If_3">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="476,913" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="strSignedOfferLetterPath" />
+                  <Variable x:TypeArguments="x:String" Name="strExtractedText" />
+                  <Variable x:TypeArguments="x:Boolean" Name="boolFileDownloaded" />
+                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[CurrentFile.Name.ToString.ToLower.Contains(in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString.ToLower) And CurrentFile.Name.ToString.ToLower.Contains(in_Config(&quot;OfferLetterSignedExtension&quot;).ToString.ToLower)]" DisplayName="If | Check if Signed Document Found in the Folder" sap:VirtualizedContainerService.HintSize="510,1044" sap2010:WorkflowViewState.IdRef="If_1">
+                <l:Download_File DisplayName="Download File | Signed Offer Letter" sap:VirtualizedContainerService.HintSize="434,600" sap2010:WorkflowViewState.IdRef="Download_File_1" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAsset="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strDelay="00:01:00" in_strLocalFilePath="[path.Combine(in_Config(&quot;RuntimeLocalFolderPath&quot;).ToString,in_Config(&quot;logF_BusinessProcessName&quot;).ToString,in_Config(&quot;SignedLocalFolderPath&quot;).ToString).ToString]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strParentDriveItemOptional="[Nothing]" in_strSharepointURL="[in_Config(&quot;SharepointSiteURL&quot;).ToString]" in_strSpParentFolderPath="[String.Concat(in_Config(&quot;SharepointSignedFolder&quot;).ToString,&quot;/&quot;,in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString,&quot;_&quot;,in_TransactionItem.SpecificContent(&quot;SharepointEmpName&quot;).ToString,&quot;_&quot;,in_Config(&quot;SignedLocalFolderPath&quot;).ToString,&quot;.docx&quot;).Replace(&quot;\&quot;,&quot;/&quot;)]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" out_boolFileDownloaded="[boolFileDownloaded]" out_strDownloadedFilePath="[strSignedOfferLetterPath]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </l:Download_File>
+                <p:DocumentReadText DisplayName="Read Text | Get all text from signed offer letter" FilePath="[strSignedOfferLetterPath]" sap:VirtualizedContainerService.HintSize="434,93" sap2010:WorkflowViewState.IdRef="DocumentReadText_2" Text="[strExtractedText]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </p:DocumentReadText>
+                <If Condition="[strExtractedText.ToLower.Contains(in_TransactionItem.SpecificContent(&quot;FirstName&quot;).ToString.ToLower) And strExtractedText.ToLower.Contains(in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString.ToLower)]" DisplayName="If | Check if Signed Document has right Candidate Name" sap:VirtualizedContainerService.HintSize="434,52" sap2010:WorkflowViewState.IdRef="If_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence sap:VirtualizedContainerService.HintSize="476,782" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <Sequence sap:VirtualizedContainerService.HintSize="476,1174" sap2010:WorkflowViewState.IdRef="Sequence_13">
                       <Sequence.Variables>
-                        <Variable x:TypeArguments="x:String" Name="extractedText" />
+                        <Variable x:TypeArguments="scg:List(x:String)" Name="listAttachments" />
                       </Sequence.Variables>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <p:DocumentReadText DisplayName="Read Text | Get all text from signed offer letter" FilePath="[CurrentFile.FullName]" sap:VirtualizedContainerService.HintSize="434,93" sap2010:WorkflowViewState.IdRef="DocumentReadText_1" Text="[extractedText]" />
-                      <If Condition="[extractedText.Contains(in_TransactionItem.SpecificContent(&quot;FullName&quot;).ToString) And extractedText.Contains(in_TransactionItem.SpecificContent(&quot;JobTitle&quot;).ToString)]" DisplayName="If | Check if Signed Document has right Candidate Name" sap:VirtualizedContainerService.HintSize="434,561" sap2010:WorkflowViewState.IdRef="If_2">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="376,266" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SendEmailToNewHire.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Mail_Operations\SendEmailToNewHire.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                                <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_OfferLetterFilePath">[CurrentFile.FullName]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                            <ui:Break DisplayName="Break | Offer Letter Sent" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Break_1" />
-                          </Sequence>
-                        </If.Then>
-                        <If.Else>
-                          <Sequence sap:VirtualizedContainerService.HintSize="376,113" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:Continue DisplayName="Continue | Check for Offer Letter" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Continue_1" />
-                          </Sequence>
-                        </If.Else>
-                      </If>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Signed Document has Correct Candidate Name&quot;]" />
+                      <Assign DisplayName="Assign | List of Attachments" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="scg:List(x:String)">[listAttachments]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="scg:List(x:String)">[New list(Of String)(new string(){strSignedOfferLetterPath})]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <l:Send_Email DisplayName="Send Email | Offer Letter" sap:VirtualizedContainerService.HintSize="434,549" sap2010:WorkflowViewState.IdRef="Send_Email_1" in_listOfAttachment="[listAttachments]" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAssetName="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strFromEmailAccount="[in_Config(&quot;BotMailID&quot;).ToString]" in_strMailBody="[in_Config(&quot;OfferLetterMailBody&quot;).ToString.Replace(&quot;^&quot;,in_TransactionItem.SpecificContent(&quot;FirstName&quot;).toString+&quot; &quot;+in_TransactionItem.SpecificContent(&quot;LastName&quot;).toString).Replace(&quot;$&quot;,in_TransactionItem.SpecificContent(&quot;JobTitle&quot;).ToString)]" in_strMailRecipientCC="[in_Config(&quot;BE_Contacts_CC&quot;).ToString.Split(&quot;,&quot;c)]" in_strMailRecipientTo="[in_TransactionItem.SpecificContent(&quot;Email&quot;).ToString.Split(&quot;,&quot;c)]" in_strMailSubject="[String.Concat(in_Config(&quot;OfferLetterMailSubject&quot;).ToString,in_TransactionItem.SpecificContent(&quot;FirstName&quot;).toString,&quot; &quot;,in_TransactionItem.SpecificContent(&quot;LastName&quot;).toString)]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" />
+                      <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DeferDate="[Today.AddDays(2)]" DisplayName="Add Queue Item | For Workday Disposition" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,194" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;WorkDayDispositioningQueue&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
+                        <ui:AddQueueItem.ItemInformation>
+                          <InArgument x:TypeArguments="x:String" x:Key="JR Number">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Employee Email">[in_TransactionItem.SpecificContent("Email").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Annual Salary">[in_TransactionItem.SpecificContent("Salary").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Job Title">[in_TransactionItem.SpecificContent("JobTitle").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Transfer Type">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Employee Name">[in_TransactionItem.SpecificContent("FirstName").ToString+" "+in_TransactionItem.SpecificContent("LastName").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Supervisor Email">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="First Name">[in_TransactionItem.SpecificContent("FirstName").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Middle Name">[in_TransactionItem.SpecificContent("MiddleName").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Last Name">[in_TransactionItem.SpecificContent("LastName").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="DOB">[in_TransactionItem.SpecificContent("DateOfBirth").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Address">[in_TransactionItem.SpecificContent("Address").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="City">[in_TransactionItem.SpecificContent("City").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="State">[in_TransactionItem.SpecificContent("State").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_TransactionItem.SpecificContent("Zip").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Primary Phone">[in_TransactionItem.SpecificContent("Phone").ToString]</InArgument>
+                          <InArgument x:TypeArguments="s:DateTime" x:Key="Creation Date">[Today]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
+                        </ui:AddQueueItem.ItemInformation>
+                      </ui:AddQueueItem>
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_14">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -203,18 +265,22 @@
                   </If.Else>
                 </If>
               </Sequence>
-            </ActivityAction>
-          </ui:ForEachFileX.Body>
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </ui:ForEachFileX>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw Exception="[New BusinessRuleException(in_Config(&quot;SignedOfferletterNotFound&quot;).ToString.Replace(&quot;^&quot;,in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString+&quot; &quot;+in_TransactionItem.SpecificContent(&quot;SharepointEmpName&quot;).ToString))]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_2" />
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="476,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -228,10 +294,10 @@
             <Throw DisplayName="Throw | Exception" Exception="[exception]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
           </ActivityAction>
         </Catch>
-        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="400,104" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="476,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
