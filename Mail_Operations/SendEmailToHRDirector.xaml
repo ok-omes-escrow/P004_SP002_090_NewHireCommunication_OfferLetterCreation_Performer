@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Send_Email" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:l="clr-namespace:LIB_O365MailActivities_00_00;assembly=LIB_O365MailActivities_00.00" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Send_Email" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:l="clr-namespace:LIB_O365MailActivities_00_00;assembly=LIB_O365MailActivities_00.00" xmlns:l1="clr-namespace:LIB_GraphAPI;assembly=LIB_GraphAPI" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>824,852</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>740,2350</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Send_Email_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -51,6 +51,7 @@
       <x:String>LIB_O365MailActivities_00_00</x:String>
       <x:String>UiPath.Activities.System.Arrays</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>LIB_GraphAPI</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -116,9 +117,10 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>LIB_GraphAPI</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Send Email to HR Director for Offer Letter Approval" sap:VirtualizedContainerService.HintSize="496,631.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Send Email to HR Director for Offer Letter Approval" sap:VirtualizedContainerService.HintSize="596.6666666666666,2285.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(x:String)" Name="listAttachments" />
       <Variable x:TypeArguments="x:String" Name="OfferLetterFileNameSigned" />
@@ -128,16 +130,16 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | Send Email to HR Director | Start" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Send Email to HR Director Workflow Started&quot;]" />
-    <TryCatch DisplayName="Try Catch | Send Email to HR Director" sap:VirtualizedContainerService.HintSize="534.6666666666666,1404.6666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <ui:LogMessage DisplayName="Log Message | Send Email to HR Director | Start" sap:VirtualizedContainerService.HintSize="534.6666666666666,143.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Send Email to HR Director Workflow Started&quot;]" />
+    <TryCatch DisplayName="Try Catch | Send Email to HR Director" sap:VirtualizedContainerService.HintSize="534.6666666666666,1991.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence DisplayName="Sequence | Send Email to HR Director" sap:VirtualizedContainerService.HintSize="496,1165.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Sequence | Send Email to HR Director" sap:VirtualizedContainerService.HintSize="496,1755.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign | List of Attachments" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign DisplayName="Assign | List of Attachments" sap:VirtualizedContainerService.HintSize="434,84.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="scg:List(x:String)">[listAttachments]</OutArgument>
             </Assign.To>
@@ -145,8 +147,16 @@
               <InArgument x:TypeArguments="scg:List(x:String)">[New list(Of String)(new string(){in_OfferLetterFilePath})]</InArgument>
             </Assign.Value>
           </Assign>
-          <l:Send_Email ApplicationID_Asset_Name="[in_Config(&quot;Office365_AppID&quot;).ToString]" Application_Secret_Asset_Name="[in_Config(&quot;Office365_AppSecret&quot;).ToString]" Attachment_List="[listAttachments]" CC_Email_Account="[{in_Config(&quot;BE_Contacts&quot;).ToString}]" DisplayName="Send Email to HR Director" From_Email_Account="[in_Config(&quot;BotMailID&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,566" sap2010:WorkflowViewState.IdRef="Send_Email_3" Mail_Body="[string.Format(&quot;Hello Director,{0}{1}Please find the attached offer letter for your review.{2}{3}Regards,{4}Bot&quot;, Environment.NewLine, Environment.NewLine, Environment.NewLine, Environment.NewLine, Environment.NewLine)]" Mail_Subject="[in_Config(&quot;HRApprovalMailSubject&quot;).ToString +in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" Orchestrator_Folder_Path="DEV" TenantID_Asset_Name="[in_Config(&quot;Office365_TenantID&quot;).ToString]" To_Email_Account="[{in_Config(&quot;BE_Contacts&quot;).ToString}]" />
-          <Assign DisplayName="Assign | Offer Letter File Name for Future Validation" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <l:Send_Email ApplicationID_Asset_Name="[in_Config(&quot;Office365_AppID&quot;).ToString]" Application_Secret_Asset_Name="[in_Config(&quot;Office365_AppSecret&quot;).ToString]" Attachment_List="[listAttachments]" CC_Email_Account="[{in_Config(&quot;BE_Contacts&quot;).ToString}]" DisplayName="Send Email to HR Director" From_Email_Account="[in_Config(&quot;BotMailID&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,559.3333333333334" sap2010:WorkflowViewState.IdRef="Send_Email_3" Mail_Body="[string.Format(&quot;Hello Director,{0}{1}Please find the attached offer letter for your review.{2}{3}Regards,{4}Bot&quot;, Environment.NewLine, Environment.NewLine, Environment.NewLine, Environment.NewLine, Environment.NewLine)]" Mail_Subject="[in_Config(&quot;HRApprovalMailSubject&quot;).ToString +in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" Orchestrator_Folder_Path="DEV" TenantID_Asset_Name="[in_Config(&quot;Office365_TenantID&quot;).ToString]" To_Email_Account="[{in_Config(&quot;BE_Contacts&quot;).ToString}]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </l:Send_Email>
+          <l1:Send_Email in_strMailBody="{x:Null}" in_strMailRecipientCC="{x:Null}" in_strMailRecipientTo="{x:Null}" in_strMailSubject="{x:Null}" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="434,559.3333333333334" sap2010:WorkflowViewState.IdRef="Send_Email_4" in_listOfAttachment="[listAttachments]" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAssetName="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strFromEmailAccount="[in_Config(&quot;BotMailID&quot;).ToString]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" />
+          <Assign DisplayName="Assign | Offer Letter File Name for Future Validation" sap:VirtualizedContainerService.HintSize="434,84.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[OfferLetterFileNameSigned]</OutArgument>
             </Assign.To>
@@ -154,7 +164,7 @@
               <InArgument x:TypeArguments="x:String">[in_OfferLetterFileName.Replace(".docx",in_Config("OfferLetterSignedExtension").ToString)]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DeferDate="[Today.AddDays(2)]" DisplayName="Add Queue Item | For Validating Offer Letter Execution" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
+          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DeferDate="[Today.AddDays(2)]" DisplayName="Add Queue Item | For Validating Offer Letter Execution" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,196.66666666666666" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
             <ui:AddQueueItem.ItemInformation>
               <InArgument x:TypeArguments="x:String" x:Key="OfferLetterFileName">[OfferLetterFileNameSigned]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
@@ -174,7 +184,7 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="500.6666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="500.6666666666667,21.333333333333332" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -185,7 +195,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Throw DisplayName="Throw | Exception" Exception="[Exception]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            <Throw DisplayName="Throw | Exception" Exception="[Exception]" sap:VirtualizedContainerService.HintSize="334,91.33333333333333" sap2010:WorkflowViewState.IdRef="Throw_1" />
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
