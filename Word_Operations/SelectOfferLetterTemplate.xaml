@@ -118,6 +118,10 @@
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="SelectOfferLetterTemplate" sap:VirtualizedContainerService.HintSize="1644,1017" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -190,7 +194,7 @@
                       <av:Size x:Key="ShapeSize">200,81</av:Size>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="Sequence | Closing Logs" sap:VirtualizedContainerService.HintSize="450,1203" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <Sequence DisplayName="Sequence | Closing Logs" sap:VirtualizedContainerService.HintSize="450,1384" sap2010:WorkflowViewState.IdRef="Sequence_15">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:Boolean" Name="boolFileDownloaded" />
                       <Variable x:TypeArguments="x:String" Name="strTemplateFilePath" />
@@ -205,7 +209,8 @@
                         <InArgument x:TypeArguments="x:String" x:Key="OfferLetterTemplate">[out_SelectedTemplate]</InArgument>
                       </ui:AddLogFields.Fields>
                     </ui:AddLogFields>
-                    <l:Download_File DisplayName="Download File" sap:VirtualizedContainerService.HintSize="334,600" sap2010:WorkflowViewState.IdRef="Download_File_1" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAsset="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strDelay="00:01:00" in_strLocalFilePath="[path.Combine(Config(&quot;RuntimeLocalFolderPath&quot;).ToString,Config(&quot;logF_BusinessProcessName&quot;).ToString,Config(&quot;TemplateLocalFolderPath&quot;).ToString).ToString]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strParentDriveItemOptional="[Nothing]" in_strSharepointURL="[in_Config(&quot;SharepointSiteURL&quot;).ToString]" in_strSpParentFolderPath="[String.Concat(in_Config(&quot;P004_SP002_090_SharepointTemplateFolder&quot;).ToString,out_SelectedTemplate)]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" out_boolFileDownloaded="[boolFileDownloaded]" out_strDownloadedFilePath="[out_SelectedTemplate]" />
+                    <ui:LogMessage DisplayName="Log Message | Selected Template" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Selected Template - &quot;+out_SelectedTemplate]" />
+                    <l:Download_File DisplayName="Download File" sap:VirtualizedContainerService.HintSize="388,600" sap2010:WorkflowViewState.IdRef="Download_File_1" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAsset="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strDelay="00:01:00" in_strLocalFilePath="[path.Combine(in_Config(&quot;RuntimeLocalFolderPath&quot;).ToString,in_Config(&quot;logF_BusinessProcessName&quot;).ToString,in_Config(&quot;TemplateLocalFolderPath&quot;).ToString).ToString]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strParentDriveItemOptional="[Nothing]" in_strSharepointURL="[in_Config(&quot;SharepointSiteURL&quot;).ToString]" in_strSpParentFolderPath="[String.Concat(in_Config(&quot;SharepointTemplateFolder&quot;).ToString,out_SelectedTemplate).Replace(&quot;\&quot;,&quot;/&quot;)]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" out_boolFileDownloaded="[boolFileDownloaded]" out_strDownloadedFilePath="[out_SelectedTemplate]" />
                     <ui:LogMessage DisplayName="Log Message | Selected Template" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Selected Template - &quot;+out_SelectedTemplate]" />
                     <ui:LogMessage DisplayName="Log Message | End | SelectOfferLetterTemplate" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;SelectOfferLetterTemplate Workflow Finished&quot;]">
                       <sap:WorkflowViewStateService.ViewState>

@@ -1,16 +1,15 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="SaveAsWordFile" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_WordTemplatePath" Type="InArgument(x:String)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="in_JobReference" Type="InArgument(x:String)" />
-    <x:Property Name="in_WordTemplateName" Type="InArgument(x:String)" />
     <x:Property Name="out_OfferLetterFileName" Type="OutArgument(x:String)" />
     <x:Property Name="out_OfferLetterFilePath" Type="OutArgument(x:String)" />
+    <x:Property Name="in_strWordTemplatePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1018,852</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1484,1570</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SaveAsWordFile_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -97,9 +96,13 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SaveAsWordFile" sap:VirtualizedContainerService.HintSize="496,631.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SaveAsWordFile" sap:VirtualizedContainerService.HintSize="692,1505" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="templateFullPath" />
     </Sequence.Variables>
@@ -108,7 +111,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | Save Template As Offer Letter | Start" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Save Template as Offer Letter Workflow Started&quot;]">
+    <ui:LogMessage DisplayName="Log Message | Save Template As Offer Letter | Start" sap:VirtualizedContainerService.HintSize="630,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Save Template as Offer Letter Workflow Started&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -116,29 +119,21 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch | Save Template as Offer Letter" sap:VirtualizedContainerService.HintSize="434,336" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch | Save Template as Offer Letter" sap:VirtualizedContainerService.HintSize="630,1213" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence DisplayName="Sequence | Save As Offer Letter" sap:VirtualizedContainerService.HintSize="592,1132.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Sequence | Save As Offer Letter" sap:VirtualizedContainerService.HintSize="592,985" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign | Build Template Path" sap:VirtualizedContainerService.HintSize="530,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[templateFullPath]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[in_WordTemplatePath+in_WordTemplateName]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <p:WordApplicationScope DisplayName="Word Application Scope | Selected Template File" FilePath="[templateFullPath]" sap:VirtualizedContainerService.HintSize="530,896.6666666666666" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
+          <p:WordApplicationScope DisplayName="Word Application Scope | Selected Template File" FilePath="[in_strWordTemplatePath]" sap:VirtualizedContainerService.HintSize="530,874" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
             <p:WordApplicationScope.Body>
               <ActivityAction x:TypeArguments="ui:WordDocument">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,786.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,764" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="offerLetterFullPath" />
                     <Variable x:TypeArguments="x:String" Name="offerLetterFileName" />
@@ -148,24 +143,24 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Assign | Build Offer Letter File Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign DisplayName="Assign | Build Offer Letter File Name" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_5">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[offerLetterFileName]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">["OfferLetter_"+in_JobReference+".docx"]</InArgument>
+                      <InArgument x:TypeArguments="x:String">["OfferLetter_"+in_TransactionItem.SpecificContent("JrNumber").ToString+"_"+in_TransactionItem.SpecificContent("FirstName").ToString+" "+in_TransactionItem.SpecificContent("LastName").ToString+".docx"]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Assign | Build Offer Letter File Path" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign DisplayName="Assign | Build Offer Letter File Path" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_2">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[offerLetterFullPath]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[String.Concat(in_Config("OfferLetterOutputFolder").ToString,offerLetterFileName)]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[path.Combine(in_Config("RuntimeLocalFolderPath").ToString,in_Config("logF_BusinessProcessName").ToString,in_Config("GeneratedLocalFolderPath").ToString,offerLetterFileName).ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <p:WordSaveAs DisplayName="Save Document As | Offer Letter" FilePath="[OfferLetterFullPath]" sap:VirtualizedContainerService.HintSize="434,174.66666666666666" sap2010:WorkflowViewState.IdRef="WordSaveAs_1" />
-                  <Assign DisplayName="Assign | Offer Letter Path" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <p:WordSaveAs DisplayName="Save Document As | Offer Letter" FilePath="[OfferLetterFullPath]" sap:VirtualizedContainerService.HintSize="434,169" sap2010:WorkflowViewState.IdRef="WordSaveAs_1" />
+                  <Assign DisplayName="Assign | Offer Letter Path" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_4">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[out_OfferLetterFilePath]</OutArgument>
                     </Assign.To>
@@ -173,7 +168,7 @@
                       <InArgument x:TypeArguments="x:String">[offerLetterFullPath]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Assign | Offer Letter File" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign DisplayName="Assign | Offer Letter File" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_6">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[out_OfferLetterFileName]</OutArgument>
                     </Assign.To>
@@ -188,10 +183,10 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,162.66666666666666" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="596,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -199,7 +194,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Throw DisplayName="Throw | Exception" Exception="[exception]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            <Throw DisplayName="Throw | Exception" Exception="[exception]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>

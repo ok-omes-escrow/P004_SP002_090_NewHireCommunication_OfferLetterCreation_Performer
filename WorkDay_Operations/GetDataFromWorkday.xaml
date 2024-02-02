@@ -14,7 +14,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1484,3188</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1484,3146</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetDataFromWorkday_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -144,14 +144,14 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetDataFromWorkday" sap:VirtualizedContainerService.HintSize="776,3083" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetDataFromWorkday" sap:VirtualizedContainerService.HintSize="776,3081" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message | Start" sap:VirtualizedContainerService.HintSize="714,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Starting Workflow: Get Data From Workday&quot;]" />
-    <TryCatch DisplayName="Try Catch | Get Data From Workday" sap:VirtualizedContainerService.HintSize="714,2791" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch | Get Data From Workday" sap:VirtualizedContainerService.HintSize="714,2789" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Variables>
         <Variable x:TypeArguments="x:String" Name="strWorkdayAddress" />
       </TryCatch.Variables>
@@ -162,14 +162,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="676,2541" sap2010:WorkflowViewState.IdRef="Sequence_11">
+        <Sequence sap:VirtualizedContainerService.HintSize="598,2539" sap2010:WorkflowViewState.IdRef="Sequence_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:IfElseIf DisplayName="Else If | Get Data From Workday Based on TransferType" sap:VirtualizedContainerService.HintSize="614,2430" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+          <ui:IfElseIf DisplayName="Else If | Get Data From Workday Based on TransferType" sap:VirtualizedContainerService.HintSize="536,2428" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
             <ui:IfElseIf.ConditionBlocks>
               <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
                 <ui:IfElseIfBlock BlockType="If" Condition="[in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString.ToLower=&quot;external&quot;]">
@@ -237,7 +237,7 @@
                                 <OutArgument x:TypeArguments="x:String">[out_Address]</OutArgument>
                               </ui:AssignOperation.To>
                               <ui:AssignOperation.Value>
-                                <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(0)]</InArgument>
+                                <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(0).Trim]</InArgument>
                               </ui:AssignOperation.Value>
                             </ui:AssignOperation>
                             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
@@ -245,7 +245,7 @@
                                 <OutArgument x:TypeArguments="x:String">[out_City]</OutArgument>
                               </ui:AssignOperation.To>
                               <ui:AssignOperation.Value>
-                                <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(1)]</InArgument>
+                                <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(1).Trim]</InArgument>
                               </ui:AssignOperation.Value>
                             </ui:AssignOperation>
                             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -253,7 +253,7 @@
                                 <OutArgument x:TypeArguments="x:String">[out_State]</OutArgument>
                               </ui:AssignOperation.To>
                               <ui:AssignOperation.Value>
-                                <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(2).Split(" "c)(0)]</InArgument>
+                                <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(2).Trim.Split(" "c)(0).Trim]</InArgument>
                               </ui:AssignOperation.Value>
                             </ui:AssignOperation>
                             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
@@ -261,7 +261,7 @@
                                 <OutArgument x:TypeArguments="x:String">[out_Zip]</OutArgument>
                               </ui:AssignOperation.To>
                               <ui:AssignOperation.Value>
-                                <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(2).Split(" "c)(1)]</InArgument>
+                                <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(2).Trim.Split(" "c)(1).Trim]</InArgument>
                               </ui:AssignOperation.Value>
                             </ui:AssignOperation>
                           </scg:List>
