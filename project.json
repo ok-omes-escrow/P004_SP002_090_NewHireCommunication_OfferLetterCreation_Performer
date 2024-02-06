@@ -4,7 +4,7 @@
   "main": "Main.xaml",
   "dependencies": {
     "LIB_GraphAPI": "[1.0.1-alpha.5]",
-    "LIB_Workday_2023.Library.Runtime": "[1.0.1-alpha.30]",
+    "LIB_Workday_2023": "[1.0.1-alpha.36]",
     "UiPath.Excel.Activities": "[2.20.2]",
     "UiPath.System.Activities": "[23.4.5]",
     "UiPath.Testing.Activities": "[23.4.1]",

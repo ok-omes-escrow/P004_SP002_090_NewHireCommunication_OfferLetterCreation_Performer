@@ -1,20 +1,20 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="GetDataFromWorkday" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:l="clr-namespace:LIB_Workday_2023;assembly=LIB_Workday_2023" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_JRNumber" Type="InArgument(x:String)" />
-    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property sap2010:Annotation.AnnotationText="For Internal Transfer Type" Name="out_ServiceStartDate" Type="OutArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="Both Transfer Type" Name="out_JobProfile" Type="OutArgument(x:String)" />
-    <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
-    <x:Property Name="out_strPhoneNumber" Type="OutArgument(x:String)" />
-    <x:Property Name="out_strAddress" Type="OutArgument(x:String)" />
-    <x:Property Name="out_strCity" Type="OutArgument(x:String)" />
-    <x:Property Name="out_strState" Type="OutArgument(x:String)" />
-    <x:Property Name="out_strZip" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Employee phone number" Name="out_strPhoneNumber" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Employee Address" Name="out_strAddress" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Employee City" Name="out_strCity" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Employee State" Name="out_strState" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Employee Zip" Name="out_strZip" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="JR number for candidate" Name="in_strJRNumber" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Both Transfer Type" Name="out_strJobProfile" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="For Internal Transfer Type" Name="out_strServiceStartDate" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1484,5949</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>857.3333333333334,6347.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetDataFromWorkday_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -65,93 +65,96 @@
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
       <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
-      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>LIB_Workday_2023</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
-      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
       <AssemblyReference>System.Data</AssemblyReference>
       <AssemblyReference>System.Data.Common</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
-      <AssemblyReference>System</AssemblyReference>
-      <AssemblyReference>System.Linq</AssemblyReference>
-      <AssemblyReference>System.Drawing</AssemblyReference>
-      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
-      <AssemblyReference>System.Drawing.Common</AssemblyReference>
-      <AssemblyReference>System.Core</AssemblyReference>
-      <AssemblyReference>System.Xml</AssemblyReference>
-      <AssemblyReference>System.Xml.Linq</AssemblyReference>
-      <AssemblyReference>System.Xaml</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
-      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
-      <AssemblyReference>PresentationFramework</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
-      <AssemblyReference>WindowsBase</AssemblyReference>
-      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
-      <AssemblyReference>System.ComponentModel</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
-      <AssemblyReference>System.ObjectModel</AssemblyReference>
-      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
-      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
-      <AssemblyReference>System.Private.Xml</AssemblyReference>
-      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
-      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Workflow</AssemblyReference>
-      <AssemblyReference>System.Memory.Data</AssemblyReference>
-      <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Console</AssemblyReference>
-      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
-      <AssemblyReference>System.Security.Permissions</AssemblyReference>
-      <AssemblyReference>System.Memory</AssemblyReference>
-      <AssemblyReference>System.Private.Uri</AssemblyReference>
-      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
-      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
-      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
-      <AssemblyReference>System.Collections</AssemblyReference>
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
-      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
-      <AssemblyReference>LIB_Workday_2023</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Platform</AssemblyReference>
-      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
-      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
       <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
-      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
-      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
-      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetDataFromWorkday" sap:VirtualizedContainerService.HintSize="709,5884" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This workflow is used to get the information from Workday according to the Type of profile (Internal/External)" DisplayName="GetDataFromWorkday" sap:VirtualizedContainerService.HintSize="797.3333333333334,6282.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | Start" sap:VirtualizedContainerService.HintSize="647,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Starting Workflow: Get Data From Workday&quot;]" />
-    <TryCatch DisplayName="Try Catch | Get Data From Workday" sap:VirtualizedContainerService.HintSize="647,5592" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <ui:LogMessage DisplayName="Log Message | Start" sap:VirtualizedContainerService.HintSize="735.3333333333334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Starting Workflow: Get Data From Workday&quot;]" />
+    <TryCatch DisplayName="Try Catch | Get Data From Workday" sap:VirtualizedContainerService.HintSize="735.3333333333334,5772" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Variables>
         <Variable x:TypeArguments="x:String" Name="strWorkdayAddress" />
       </TryCatch.Variables>
@@ -162,26 +165,26 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="609,5342" sap2010:WorkflowViewState.IdRef="Sequence_11">
+        <Sequence sap:VirtualizedContainerService.HintSize="598,5509.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:IfElseIf DisplayName="Else If | Get Data From Workday Based on TransferType" sap:VirtualizedContainerService.HintSize="547,5231" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+          <ui:IfElseIf DisplayName="Else If | Get Data From Workday Based on TransferType" sap:VirtualizedContainerService.HintSize="536,5398.666666666667" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
             <ui:IfElseIf.ConditionBlocks>
               <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
                 <ui:IfElseIfBlock BlockType="If" Condition="[in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString.ToLower=&quot;external&quot;]">
                   <ui:IfElseIfBlock.Then>
-                    <Sequence DisplayName="Body | External" sap:VirtualizedContainerService.HintSize="485,1901" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <Sequence DisplayName="Body | External" sap:VirtualizedContainerService.HintSize="484.6666666666667,2153.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_17">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log Message |  External Transfer Type" sap:VirtualizedContainerService.HintSize="423,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Transfer Type is &quot;+in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString]">
+                      <ui:LogMessage DisplayName="Log Message |  External Transfer Type" sap:VirtualizedContainerService.HintSize="422.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Transfer Type is &quot;+in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -189,7 +192,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:LogMessage>
-                      <l:SearchJRNumber_Workday sap:VirtualizedContainerService.HintSize="423,243" sap2010:WorkflowViewState.IdRef="SearchJRNumber_Workday_1" in_strBEJRNumber="[in_Config(&quot;JRNotFoundException&quot;).ToString]" in_strJRNumber="[in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" in_strSEHomeNotFound="[in_Config(&quot;HomeNotFoundException&quot;).ToString]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]">
+                      <l:SearchJRNumber_Workday DisplayName="SearchJRNumber_Workday_External" sap:VirtualizedContainerService.HintSize="422.6666666666667,250" sap2010:WorkflowViewState.IdRef="SearchJRNumber_Workday_1" in_strBEJRNumber="[in_Config(&quot;JRNotFoundException&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strJRNumber="[in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" in_strSEHomeNotFound="[in_Config(&quot;HomeNotFoundException&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -197,7 +200,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </l:SearchJRNumber_Workday>
-                      <l:GetJobProfile_Workday sap:VirtualizedContainerService.HintSize="423,243" sap2010:WorkflowViewState.IdRef="GetJobProfile_Workday_1" in_strSEDetails="[in_Config(&quot;DetailsTabNotFound&quot;).ToString]" in_strSEJobProfile="[in_Config(&quot;JobProfileNotFound&quot;).ToString]" in_strURL="https://impl.workday.com/okgov2/d/inst/*" out_strJobProfile="[out_JobProfile]">
+                      <l:GetJobProfile_Workday DisplayName="GetJobProfile_Workday_External" sap:VirtualizedContainerService.HintSize="422.6666666666667,250" sap2010:WorkflowViewState.IdRef="GetJobProfile_Workday_1" in_strSEDetails="[in_Config(&quot;DetailsTabNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strSEJobProfile="[in_Config(&quot;JobProfileNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]" out_strJobProfile="[out_strJobProfile]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -205,7 +208,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </l:GetJobProfile_Workday>
-                      <ui:LogMessage DisplayName="Log Message | Job Profile" sap:VirtualizedContainerService.HintSize="423,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[out_JobProfile]">
+                      <ui:LogMessage DisplayName="Log Message | Job Profile _External" sap:VirtualizedContainerService.HintSize="422.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[out_strJobProfile]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -213,7 +216,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:LogMessage>
-                      <l:SearchEmployee_Workday sap:VirtualizedContainerService.HintSize="423,294" sap2010:WorkflowViewState.IdRef="SearchEmployee_Workday_1" in_strBEEmployeeNotFound="[in_Config(&quot;PersonNotFound&quot;).ToString]" in_strEmployeeFullName="[in_TransactionItem.SpecificContent(&quot;FirstName&quot;).ToString+&quot; &quot;+in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString]" in_strProfileView="[in_Config(&quot;PersonCandidate&quot;).ToString]" in_strSEHomeNotFound="[in_Config(&quot;HomeNotFoundException&quot;).ToString]" in_strURL="https://impl.workday.com/wday/authgwy/okgov2/login.htmld?returnTo=%2fokgov2%2fd%2fhome.htmld">
+                      <l:SearchEmployee_Workday DisplayName="SearchEmployee_Workday_External" sap:VirtualizedContainerService.HintSize="422.6666666666667,302.6666666666667" sap2010:WorkflowViewState.IdRef="SearchEmployee_Workday_1" in_strBEEmployeeNotFound="[in_Config(&quot;PersonNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strEmployeeFullName="[in_TransactionItem.SpecificContent(&quot;FirstName&quot;).ToString+&quot; &quot;+in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString]" in_strProfileView="[in_Config(&quot;PersonCandidate&quot;).ToString]" in_strSEHomeNotFound="[in_Config(&quot;HomeNotFoundException&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -221,7 +224,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </l:SearchEmployee_Workday>
-                      <l:GetCandidateHomeAddress_External_Workday DisplayName="GetCandidateHomeAddress" sap:VirtualizedContainerService.HintSize="423,294" sap2010:WorkflowViewState.IdRef="GetCandidateHomeAddress_External_Workday_1" in_strDelayTimeSmall="5" in_strSESummaryTab="[in_Config(&quot;SummaryTabNotFound&quot;).ToString]" in_strURL="https://impl.workday.com/okgov2/d/inst/*" out_strHomeAddress="[strWorkdayAddress]" out_strPhoneNumber="[out_strPhoneNumber]">
+                      <l:GetCandidateHomeAddress_External_Workday DisplayName="GetCandidateHomeAddress_External" sap:VirtualizedContainerService.HintSize="422.6666666666667,302.6666666666667" sap2010:WorkflowViewState.IdRef="GetCandidateHomeAddress_External_Workday_1" in_strDelayTimeSmall="[in_Config(&quot;DelayTimeSmall&quot;).ToString]" in_strSESummaryTab="[in_Config(&quot;SummaryTabNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]" out_strHomeAddress="[strWorkdayAddress]" out_strPhoneNumber="[out_strPhoneNumber]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -229,7 +232,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </l:GetCandidateHomeAddress_External_Workday>
-                      <ui:MultipleAssign DisplayName="Multiple Assign | Split Address for Candidate" sap:VirtualizedContainerService.HintSize="423,194" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                      <ui:MultipleAssign DisplayName="Multiple Assign | Split Address for Candidate_External" sap:VirtualizedContainerService.HintSize="422.6666666666667,223.33333333333334" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                         <ui:MultipleAssign.AssignOperations>
                           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -264,18 +267,26 @@
                                 <InArgument x:TypeArguments="x:String">[strWorkdayAddress.Split(","c)(2).Trim.Split(" "c)(1).Trim]</InArgument>
                               </ui:AssignOperation.Value>
                             </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[out_strServiceStartDate]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[Today.ToString]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
                           </scg:List>
                         </ui:MultipleAssign.AssignOperations>
                       </ui:MultipleAssign>
+                      <ui:LogMessage DisplayName="Log Message || External" sap:VirtualizedContainerService.HintSize="422.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Fetched the details for External type&quot;]" />
                     </Sequence>
                   </ui:IfElseIfBlock.Then>
                 </ui:IfElseIfBlock>
                 <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString.ToLower=&quot;internal&quot;]">
                   <ui:IfElseIfBlock.Then>
-                    <Sequence DisplayName="Body | Internal" sap:VirtualizedContainerService.HintSize="496,2884" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <Sequence DisplayName="Body | Internal" sap:VirtualizedContainerService.HintSize="484.6666666666667,2786" sap2010:WorkflowViewState.IdRef="Sequence_18">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:String" Name="strHomeAddress" />
-                        <Variable x:TypeArguments="x:String" Name="strPhoneNumber" />
                       </Sequence.Variables>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -283,8 +294,8 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log Message |  Internal Transfer Type" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Transfer Type is &quot;+in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString]" />
-                      <l:SearchJRNumber_Workday sap:VirtualizedContainerService.HintSize="434,243" sap2010:WorkflowViewState.IdRef="SearchJRNumber_Workday_2" in_strBEJRNumber="[in_Config(&quot;JRNotFoundException&quot;).ToString]" in_strJRNumber="[in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" in_strSEHomeNotFound="[in_Config(&quot;WorkdayLoginException&quot;).ToString]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]">
+                      <ui:LogMessage DisplayName="Log Message |  Internal Transfer Type" sap:VirtualizedContainerService.HintSize="422.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Transfer Type is &quot;+in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString]" />
+                      <l:SearchJRNumber_Workday DisplayName="SearchJRNumber_Workday_Internal" sap:VirtualizedContainerService.HintSize="422.6666666666667,250" sap2010:WorkflowViewState.IdRef="SearchJRNumber_Workday_2" in_strBEJRNumber="[in_Config(&quot;JRNotFoundException&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strJRNumber="[in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" in_strSEHomeNotFound="[in_Config(&quot;HomeNotFoundException&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -292,7 +303,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </l:SearchJRNumber_Workday>
-                      <l:GetJobProfile_Workday sap:VirtualizedContainerService.HintSize="434,243" sap2010:WorkflowViewState.IdRef="GetJobProfile_Workday_2" in_strSEDetails="[in_Config(&quot;DetailsTabNotFound&quot;).ToString]" in_strSEJobProfile="[in_Config(&quot;WorkdayJobProfileException&quot;).ToString]" in_strURL="https://impl.workday.com/okgov2/d/inst/*" out_strJobProfile="[out_JobProfile]">
+                      <l:GetJobProfile_Workday DisplayName="GetJobProfile_Workday_Internal" sap:VirtualizedContainerService.HintSize="422.6666666666667,250" sap2010:WorkflowViewState.IdRef="GetJobProfile_Workday_2" in_strSEDetails="[in_Config(&quot;DetailsTabNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strSEJobProfile="[in_Config(&quot;WorkdayJobProfileException&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]" out_strJobProfile="[out_strJobProfile]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -300,7 +311,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </l:GetJobProfile_Workday>
-                      <ui:LogMessage DisplayName="Log Message | Job Profile" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[out_JobProfile]">
+                      <ui:LogMessage DisplayName="Log Message | Job Profile" sap:VirtualizedContainerService.HintSize="422.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[out_strJobProfile]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -308,7 +319,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:LogMessage>
-                      <l:SearchEmployee_Workday sap:VirtualizedContainerService.HintSize="434,294" sap2010:WorkflowViewState.IdRef="SearchEmployee_Workday_2" in_strBEEmployeeNotFound="[in_Config(&quot;PersonNotFound&quot;).ToString]" in_strEmployeeFullName="[in_TransactionItem.SpecificContent(&quot;FirstName&quot;).ToString+&quot; &quot;+in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString]" in_strProfileView="[in_Config(&quot;PersonPeople&quot;).ToString]" in_strSEHomeNotFound="[in_Config(&quot;HomeNotFoundException&quot;).ToString]" in_strURL="https://impl.workday.com/wday/authgwy/okgov2/login.htmld?returnTo=%2fokgov2%2fd%2fhome.htmld">
+                      <l:SearchEmployee_Workday DisplayName="SearchEmployee_Workday_Internal" sap:VirtualizedContainerService.HintSize="422.6666666666667,302.6666666666667" sap2010:WorkflowViewState.IdRef="SearchEmployee_Workday_2" in_strBEEmployeeNotFound="[in_Config(&quot;PersonNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strEmployeeFullName="[in_TransactionItem.SpecificContent(&quot;FirstName&quot;).ToString+&quot; &quot;+in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString]" in_strProfileView="[in_Config(&quot;PersonPeople&quot;).ToString]" in_strSEHomeNotFound="[in_Config(&quot;HomeNotFoundException&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -316,39 +327,62 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </l:SearchEmployee_Workday>
-                      <l:GetServiceDate_Workday sap:VirtualizedContainerService.HintSize="434,294" sap2010:WorkflowViewState.IdRef="GetServiceDate_Workday_2" in_strSECompanyServiceDate="[in_Config(&quot;ServiceDateFieldNotFound&quot;).ToString]" in_strSEJobTab="[in_Config(&quot;JobTabNotFound&quot;).ToString]" in_strSEServiceDate="[in_Config(&quot;JobTabNotFound&quot;).ToString]" in_strURL="https://impl.workday.com/okgov2/d/inst/*" out_strCompanyServiceDate="[out_ServiceStartDate]" />
-                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,90" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Service Date is: &quot;+out_ServiceStartDate]" />
-                      <l:GetCandidateHomeAddress_Internal_Workday sap:VirtualizedContainerService.HintSize="434,396" sap2010:WorkflowViewState.IdRef="GetCandidateHomeAddress_Internal_Workday_1" in_strDelayTimeSmall="5" in_strSEAddressMissing="[in_Config(&quot;ContactTabNotFound&quot;).ToString]" in_strSEContactTab="[in_Config(&quot;ContactTabNotFound&quot;).ToString]" in_strSESummaryTab="[in_Config(&quot;SummaryTabNotFound&quot;).ToString]" in_strURL="https://impl.workday.com/okgov2/d/inst/*" out_strHomeAddress="[strHomeAddress]" out_strPhoneNumber="[out_strPhoneNumber]" />
-                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,90" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Address is : &quot;+out_strAddress]" />
-                      <Assign sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_1">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[out_ServiceStartDate]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <If Condition="[out_ServiceStartDate is Nothing]" sap:VirtualizedContainerService.HintSize="434,360" sap2010:WorkflowViewState.IdRef="If_1">
-                        <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_19">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <Throw Exception="[new BusinessRuleException(&quot;Service Date not found for &quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString+&quot; &quot;+in_TransactionItem.SpecificContent(&quot;SharepointEmpName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_5" />
-                          </Sequence>
-                        </If.Then>
-                        <If.Else>
-                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_20" />
-                        </If.Else>
-                      </If>
+                      <l:GetServiceDate_Workday DisplayName="GetServiceDate_Workday_Internal" sap:VirtualizedContainerService.HintSize="422.6666666666667,302.6666666666667" sap2010:WorkflowViewState.IdRef="GetServiceDate_Workday_2" in_strSECompanyServiceDate="[in_Config(&quot;ServiceDateFieldNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strSEJobTab="[in_Config(&quot;JobTabNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strSEServiceDate="[in_Config(&quot;JobTabNotFound&quot;).ToString]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]" out_strCompanyServiceDate="[out_strServiceStartDate]" />
+                      <ui:LogMessage DisplayName="Log Message | Service date" sap:VirtualizedContainerService.HintSize="422.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Service Date is: &quot;+out_strServiceStartDate]" />
+                      <l:GetCandidateHomeAddress_Internal_Workday DisplayName="GetCandidateHomeAddress_Internal _Workday" sap:VirtualizedContainerService.HintSize="422.6666666666667,408" sap2010:WorkflowViewState.IdRef="GetCandidateHomeAddress_Internal_Workday_1" in_strDelayTimeSmall="[in_Config(&quot;DelayTimeSmall&quot;).ToString]" in_strSEAddressMissing="[in_Config(&quot;ContactTabNotFound&quot;).ToString.Replace(&quot;^&quot;,in_strJRNumber)]" in_strSEContactTab="[in_Config(&quot;ContactTabNotFound&quot;).ToString]" in_strSESummaryTab="[in_Config(&quot;SummaryTabNotFound&quot;).ToString]" in_strURL="[in_Config(&quot;WorkdayURL&quot;).ToString]" out_strHomeAddress="[strHomeAddress]" out_strPhoneNumber="[out_strPhoneNumber]" />
+                      <ui:MultipleAssign DisplayName="Multiple Assign | Split Address for Candidate" sap:VirtualizedContainerService.HintSize="422.6666666666667,223.33333333333334" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                        <ui:MultipleAssign.AssignOperations>
+                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[strWorkdayAddress]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[strHomeAddress]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[out_strAddress]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[System.text.RegularExpressions.RegEx.split(strWorkdayAddress,"\n").ToArray(0).ToString.Trim]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[out_strCity]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[System.text.RegularExpressions.RegEx.split(strWorkdayAddress,"\n").ToArray(1).ToString.Trim.Split(","c)(0).ToString.Trim]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[out_strState]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[System.text.RegularExpressions.RegEx.split(strWorkdayAddress,"\n").ToArray(1).ToString.Trim.Split(","c)(1).ToString.Trim.Split(" "c)(0).ToString.Trim]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[out_strZip]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[System.text.RegularExpressions.RegEx.split(strWorkdayAddress,"\n").ToArray(1).ToString.Trim.Split(","c)(1).ToString.Trim.Split(" "c)(1).ToString.Trim]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                          </scg:List>
+                        </ui:MultipleAssign.AssignOperations>
+                      </ui:MultipleAssign>
+                      <ui:LogMessage DisplayName="Log Message | Internal" sap:VirtualizedContainerService.HintSize="422.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Fetched the details for internal type&quot;]" />
                     </Sequence>
                   </ui:IfElseIfBlock.Then>
                 </ui:IfElseIfBlock>
                 <ui:IfElseIfBlock BlockType="Else">
                   <ui:IfElseIfBlock.Then>
-                    <Throw DisplayName="Throw | Invalid Transfer Type" Exception="[new BusinessRuleException(&quot;Invalid Transfer Type&quot;)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                    <Throw DisplayName="Throw | Invalid Transfer Type" Exception="[new BusinessRuleException(&quot;Invalid Transfer Type&quot;)]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_4" />
                   </ui:IfElseIfBlock.Then>
                 </ui:IfElseIfBlock>
               </sc:BindingList>
@@ -363,7 +397,7 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="613,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="701.3333333333334,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -374,10 +408,10 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Throw DisplayName="Throw | Exception" Exception="[New SystemException(Exception.Message.ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_3" />
+            <Throw DisplayName="Throw | Exception" Exception="[New SystemException(Exception.Message.ToString)]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_3" />
           </ActivityAction>
         </Catch>
-        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="613,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="701.3333333333334,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -388,10 +422,11 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
             </ActivityAction.Argument>
-            <Rethrow DisplayName="Rethrow | BE" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            <Rethrow DisplayName="Rethrow | BE" sap:VirtualizedContainerService.HintSize="334,25.333333333333332" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
+    <ui:LogMessage DisplayName="Log Message | Completed" sap:VirtualizedContainerService.HintSize="735.3333333333334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Completed flow: Get Data From Workday&quot;]" />
   </Sequence>
 </Activity>
