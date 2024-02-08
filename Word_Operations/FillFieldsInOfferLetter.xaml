@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>857.3333333333334,3006.6666666666665</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>883.3333333333334,3006.6666666666665</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FillFieldsInOfferLetter_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -140,7 +140,7 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Date" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[Today.ToString(&quot;MM/dd/yyyy&quot;)]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterDate&quot;).ToString]">
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Date" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[Today.ToString(&quot;MMMM d, yyyy&quot;)]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterDate&quot;).ToString]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
