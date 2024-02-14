@@ -139,6 +139,7 @@
             <Variable x:TypeArguments="x:String" Name="strOfferLetterTemplatePath" />
             <Variable x:TypeArguments="x:String" Name="strCanddiatePhone" />
             <Variable x:TypeArguments="x:String" Name="strServiceStartDate" />
+            <Variable x:TypeArguments="x:String" Name="strWorkerSubType" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -148,16 +149,39 @@
           <ui:LogMessage DisplayName="Log Message | Work day Activities" sap:VirtualizedContainerService.HintSize="534.6666666666666,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Transaction having no offer letter , Going in workday and Fetching details&quot;]" />
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Fetching the Service date, Address , City, Zip details in Workday" DisplayName="GetDataFromWorkday.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="534.6666666666666,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="WorkDay_Operations\GetDataFromWorkday.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strPhoneNumber">[strCanddiatePhone]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strAddress">[strCandidateAddress]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strCity">[strCandidateCity]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strState">[strCandidateState]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strZip">[strCandidateZip]</OutArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strJRNumber">[in_TransactionItem.Reference.ToString]</InArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strJobProfile">[strCandidateJobProfile]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strServiceStartDate">[strServiceStartDate]</OutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+              </InArgument>
+              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
+                <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strPhoneNumber">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCanddiatePhone" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strAddress">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateAddress" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strCity">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateCity" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strState">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateState" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strZip">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateZip" />
+              </OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strJRNumber">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.Reference.ToString" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strJobProfile">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateJobProfile" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strServiceStartDate">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strServiceStartDate" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strWorkerSubType">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strWorkerSubType" />
+              </OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -231,12 +255,27 @@
           <ui:LogMessage DisplayName="Log Message | Templete selection" sap:VirtualizedContainerService.HintSize="534.6666666666666,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Selection of Templete flow to triggered&quot;]" />
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Selection of Offer letter templete via internal , external and service date crietia" DisplayName="SelectOfferLetterTemplate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="534.6666666666666,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Word_Operations\SelectOfferLetterTemplate.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strJobProfile">[strCandidateJobProfile]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strTransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strSelectedTemplate">[strOfferLetterTemplatePath]</OutArgument>
-              <InArgument x:TypeArguments="s:DateTime" x:Key="in_datetimeServiceStartDate">[datetimeCandServiceStartDate]</InArgument>
-              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strJobProfile">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateJobProfile" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strTransferType">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strSelectedTemplate">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strOfferLetterTemplatePath" />
+              </OutArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="in_datetimeServiceStartDate">
+                <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="datetimeCandServiceStartDate" />
+              </InArgument>
+              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
+                <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strWorkerSubType">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strWorkerSubType" />
+              </InArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
