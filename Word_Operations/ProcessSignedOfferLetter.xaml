@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>738.6666666666666,6499.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>881.3333333333334,4783.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessSignedOfferLetter_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -125,7 +125,7 @@
       <AssemblyReference>System.Private.Uri</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ProcessSignedOfferLetter" sap:VirtualizedContainerService.HintSize="748.6666666666666,6434.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ProcessSignedOfferLetter" sap:VirtualizedContainerService.HintSize="748.6666666666666,4718.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strListItemFilter" />
     </Sequence.Variables>
@@ -142,7 +142,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch | Check for signed letter" sap:VirtualizedContainerService.HintSize="686.6666666666666,6139.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch | Check for signed letter" sap:VirtualizedContainerService.HintSize="686.6666666666666,4423.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -150,7 +150,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Check Sequence" sap:VirtualizedContainerService.HintSize="648,5876.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Check Sequence" sap:VirtualizedContainerService.HintSize="648,4160.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Int32" Name="intFileCount" />
             <Variable x:TypeArguments="x:Boolean" Name="boolSignedFileFound" />
@@ -168,9 +168,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </l:Files_or_Folders_Exist>
-          <If Condition="[boolSignedFileFound And intFileCount =1]" DisplayName="If Signed File exist" sap:VirtualizedContainerService.HintSize="586,5212.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[boolSignedFileFound And intFileCount =1]" DisplayName="If Signed File exist" sap:VirtualizedContainerService.HintSize="586,3496.6666666666665" sap2010:WorkflowViewState.IdRef="If_1">
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="552,4170.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence sap:VirtualizedContainerService.HintSize="552,3312.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="strSignedOfferLetterPath" />
                   <Variable x:TypeArguments="x:String" Name="strExtractedText" />
@@ -197,7 +197,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </p:DocumentReadText>
-                <If Condition="[strExtractedText.ToLower.Contains(in_TransactionItem.SpecificContent(&quot;FirstName&quot;).ToString.ToLower) And strExtractedText.ToLower.Contains(in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString.ToLower)]" DisplayName="If | Check if Signed Document has right Candidate Name" sap:VirtualizedContainerService.HintSize="510,3291.3333333333335" sap2010:WorkflowViewState.IdRef="If_2">
+                <If Condition="[strExtractedText.ToLower.Contains(in_TransactionItem.SpecificContent(&quot;FirstName&quot;).ToString.ToLower) And strExtractedText.ToLower.Contains(in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString.ToLower)]" DisplayName="If | Check if Signed Document has right Candidate Name" sap:VirtualizedContainerService.HintSize="510,2433.3333333333335" sap2010:WorkflowViewState.IdRef="If_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -255,6 +255,7 @@
                           <InArgument x:TypeArguments="x:String" x:Key="Primary Phone">[in_TransactionItem.SpecificContent("Phone").ToString]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="Creation Date">[Today]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_TransactionItem.SpecificContent("WorkerSubType").ToString]</InArgument>
                         </ui:AddQueueItem.ItemInformation>
                       </ui:AddQueueItem>
                       <ui:LogMessage DisplayName="Log Message | Queue added" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Add Queue Item For Workday Disposition&quot;]" />
