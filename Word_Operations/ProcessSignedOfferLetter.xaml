@@ -256,6 +256,8 @@
                           <InArgument x:TypeArguments="s:DateTime" x:Key="Creation Date">[Today]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_TransactionItem.SpecificContent("WorkerSubType").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_TransactionItem.SpecificContent("BuildingAddress").ToString]</InArgument>
                         </ui:AddQueueItem.ItemInformation>
                       </ui:AddQueueItem>
                       <ui:LogMessage DisplayName="Log Message | Queue added" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Add Queue Item For Workday Disposition&quot;]" />

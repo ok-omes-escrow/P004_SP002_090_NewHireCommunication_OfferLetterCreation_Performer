@@ -2,11 +2,12 @@
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="BreakTriggerScopeInArgument" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>881.3333333333334,2281.3333333333335</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>881.3333333333334,490</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -107,9 +108,10 @@
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="472,2216.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="724,3946.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateTime" Name="datetimeCandServiceStartDate" />
       <Variable x:TypeArguments="x:String" Name="strCandidateJobProfile" />
@@ -119,22 +121,27 @@
       <Variable x:TypeArguments="x:String" Name="strCandidateZip" />
       <Variable x:TypeArguments="x:String" Name="strOfferLetterFilePath" />
       <Variable x:TypeArguments="x:String" Name="strOfferLetterFileName" />
+      <Variable x:TypeArguments="s:String[]" Name="ArrBuildingName" />
+      <Variable x:TypeArguments="x:String" Name="strBuildingAddress" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="410,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <If Condition="[Not in_TransactionItem.SpecificContent.Keys.Contains(&quot;OfferLetterFileName&quot;)]" DisplayName="If | Txn Item having Offer letter" sap:VirtualizedContainerService.HintSize="410,1826" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="662,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <If Condition="[Not in_TransactionItem.SpecificContent.Keys.Contains(&quot;OfferLetterFileName&quot;)]" DisplayName="If | Txn Item having Offer letter" sap:VirtualizedContainerService.HintSize="662,3572.6666666666665" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="376,1394" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence sap:VirtualizedContainerService.HintSize="628,3140.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="strOfferLetterTemplatePath" />
             <Variable x:TypeArguments="x:String" Name="strCanddiatePhone" />
@@ -146,8 +153,134 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message | Work day Activities" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Transaction having no offer letter , Going in workday and Fetching details&quot;]" />
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Fetching the Service date, Address , City, Zip details in Workday" DisplayName="GetDataFromWorkday.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="WorkDay_Operations\GetDataFromWorkday.xaml">
+          <ui:LogMessage DisplayName="Log Message | Work day Activities" sap:VirtualizedContainerService.HintSize="586,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Transaction having no offer letter , Going in workday and Fetching details&quot;]" />
+          <If sap2010:Annotation.AnnotationText="checking Buliding name added in sharepoint list" Condition="[String.IsNullOrEmpty(in_TransactionItem.SpecificContent(&quot;BuildingName&quot;).ToString)]" DisplayName="If check Building name value" sap:VirtualizedContainerService.HintSize="586,797.3333333333334" sap2010:WorkflowViewState.IdRef="If_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,179.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw | BE | Null Building Name" Exception="[new BusinessRuleException(in_Config(&quot;BuildingName_NotFoundMsg&quot;).ToString.Replace(&quot;^&quot;,in_TransactionItem.Reference.ToString))]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_4" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="464.6666666666667,403.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message | Building name is available" sap:VirtualizedContainerService.HintSize="422.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Building Name is present in sharepoint&quot;]" />
+                <ui:MultipleAssign DisplayName="Multiple Assign | Arr building name and address" sap:VirtualizedContainerService.HintSize="422.6666666666667,131.33333333333334" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                  <ui:MultipleAssign.AssignOperations>
+                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="s:String[]">[ArrBuildingName]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="s:String[]">[in_Config("BuildingName_Address").ToString.Split("|",StringSplitOptions.None)]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[strBuildingAddress]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                    </scg:List>
+                  </ui:MultipleAssign.AssignOperations>
+                </ui:MultipleAssign>
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Fetching Building address value corelated to building name" DisplayName="For Each | Array Building name" sap:VirtualizedContainerService.HintSize="586,730" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ArrBuildingName]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="BuildingName" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="552,509.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[BuildingName.ToString.ToLower.Contains(in_TransactionItem.SpecificContent(&quot;BuildingName&quot;).ToString.ToLower)]" DisplayName="If building name exist" sap:VirtualizedContainerService.HintSize="510,422" sap2010:WorkflowViewState.IdRef="If_6">
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="476,238" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Assign | Address" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[strBuildingAddress]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[BuildingName.ToString.Split("-",StringSplitOptions.None)(1).Trim]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:Break DisplayName="Break for each" sap:VirtualizedContainerService.HintSize="434,25.333333333333332" sap2010:WorkflowViewState.IdRef="Break_2" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15" />
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
+          <If sap2010:Annotation.AnnotationText="Check if address value found in Orchestrator asset" Condition="[String.IsNullOrEmpty(strBuildingAddress)]" DisplayName="If | Address is null" sap:VirtualizedContainerService.HintSize="586,99.33333333333333" sap2010:WorkflowViewState.IdRef="If_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,179.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw | BE | Null Building Name &amp; Address" Exception="[new BusinessRuleException(in_Config(&quot;BuildingAddress_NotFoundMsg&quot;).ToString.Replace(&quot;^&quot;,in_TransactionItem.Reference.ToString))]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_5" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,232" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message | Building adddress is available" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Building Address is present in asset for mentioned building name&quot;]" />
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Fetching the Service date, Address , City, Zip details in Workday" DisplayName="GetDataFromWorkday.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="WorkDay_Operations\GetDataFromWorkday.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
               <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
@@ -167,7 +300,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <TryCatch DisplayName="Try Catch | Date" sap:VirtualizedContainerService.HintSize="334,54" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Catch | Date" sap:VirtualizedContainerService.HintSize="586,54" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -230,7 +363,7 @@
               </Catch>
             </TryCatch.Catches>
           </TryCatch>
-          <ui:LogMessage DisplayName="Log Message | Templete selection" sap:VirtualizedContainerService.HintSize="334,54" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Selection of Templete flow to triggered&quot;]">
+          <ui:LogMessage DisplayName="Log Message | Templete selection" sap:VirtualizedContainerService.HintSize="586,54" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Selection of Templete flow to triggered&quot;]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -238,7 +371,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:LogMessage>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Selection of Offer letter templete via internal , external and service date crietia" DisplayName="SelectOfferLetterTemplate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Word_Operations\SelectOfferLetterTemplate.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Selection of Offer letter templete via internal , external and service date crietia" DisplayName="SelectOfferLetterTemplate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Word_Operations\SelectOfferLetterTemplate.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_strJobProfile">[strCandidateJobProfile]</InArgument>
@@ -254,7 +387,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Saving the file for an candidate" DisplayName="SaveAsOfferLetter.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,146" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Word_Operations\SaveAsOfferLetter.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Saving the file for an candidate" DisplayName="SaveAsOfferLetter.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,146" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Word_Operations\SaveAsOfferLetter.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_strWordTemplatePath">[strOfferLetterTemplatePath]</InArgument>
@@ -268,7 +401,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Updating the Template with current candidate Values" DisplayName="FillFieldsInOfferLetter.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,146" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Word_Operations\FillFieldsInOfferLetter.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Updating the Template with current candidate Values" DisplayName="FillFieldsInOfferLetter.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,146" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Word_Operations\FillFieldsInOfferLetter.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
@@ -284,38 +417,19 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Sending Email to HR for their approval or signing the document" DisplayName="SendEmailToHRDirector.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Mail_Operations\SendEmailToHRDirector.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Sending Email to HR for their approval or signing the document" DisplayName="SendEmailToHRDirector.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Mail_Operations\SendEmailToHRDirector.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-              </InArgument>
-              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
-                <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strAddress">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateAddress" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strCity">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateCity" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strState">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateState" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strZip">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateZip" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strPhoneNumber">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCanddiatePhone" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strOfferLetterFilePath">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strOfferLetterFilePath" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strOfferLetterFileName">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strOfferLetterFileName" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strWorkerSubType">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strWorkerSubType" />
-              </InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strAddress">[strCandidateAddress]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strCity">[strCandidateCity]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strState">[strCandidateState]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strZip">[strCandidateZip]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strPhoneNumber">[strCanddiatePhone]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strOfferLetterFilePath">[strOfferLetterFilePath]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strOfferLetterFileName">[strOfferLetterFileName]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strWorkerSubType">[strWorkerSubType]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strBuildingAddress">[strBuildingAddress]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">

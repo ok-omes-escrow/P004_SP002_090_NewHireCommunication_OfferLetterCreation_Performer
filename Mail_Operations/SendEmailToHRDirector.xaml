@@ -10,6 +10,7 @@
     <x:Property sap2010:Annotation.AnnotationText="offer letter file path" Name="in_strOfferLetterFilePath" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="offer letter file name" Name="in_strOfferLetterFileName" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Worker Sub Type" Name="in_strWorkerSubType" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Building Address for candidate" Name="in_strBuildingAddress" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -238,6 +239,8 @@
                   <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
                 </ui:AddQueueItem.ItemInformation>
               </ui:AddQueueItem>
             </Switch.Default>
@@ -269,6 +272,8 @@
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Friday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForFriday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution | Friday" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_5" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
@@ -293,6 +298,8 @@
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Monday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForMonday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution_Mon" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_6" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
@@ -317,6 +324,8 @@
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Tuesday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForTuesday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution_tues" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_7" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
@@ -341,6 +350,8 @@
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Wednesday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForWednesday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution_wed" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_8" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
@@ -365,6 +376,8 @@
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
           </Switch>
