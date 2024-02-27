@@ -7,11 +7,13 @@
     <x:Property sap2010:Annotation.AnnotationText="state of the employee" Name="in_strOfferLetterState" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Zip info of employee" Name="in_strOfferLetterZip" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Address of employee" Name="in_strOfferLetterAddress" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="BuildingNameToReplace" Name="in_strBuildingName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="BuildingNameToReplace" Name="in_strBuildingAddress" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>883.3333333333334,3006.6666666666665</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>881.3333333333334,3216.6666666666665</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FillFieldsInOfferLetter_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -102,7 +104,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Updating the Templete with current candidate Values" DisplayName="FillFieldsInOfferLetter" sap:VirtualizedContainerService.HintSize="706.6666666666666,2942" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Updating the Templete with current candidate Values" DisplayName="FillFieldsInOfferLetter" sap:VirtualizedContainerService.HintSize="706.6666666666666,3152" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strFullName" />
     </Sequence.Variables>
@@ -120,7 +122,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch | Fill Fields in Offer Letter" sap:VirtualizedContainerService.HintSize="644.6666666666666,2706.6666666666665" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch | Fill Fields in Offer Letter" sap:VirtualizedContainerService.HintSize="644.6666666666666,2916.6666666666665" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -128,13 +130,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <p:WordApplicationScope DisplayName="Word Application Scope | Update Offer Letter" FilePath="[in_strWordFileName]" sap:VirtualizedContainerService.HintSize="606,2467.3333333333335" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
+        <p:WordApplicationScope DisplayName="Word Application Scope | Update Offer Letter" FilePath="[in_strWordFileName]" sap:VirtualizedContainerService.HintSize="606,2677.3333333333335" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
           <p:WordApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WordDocument">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="572,2357.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="572,2567.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -192,6 +194,7 @@
                 <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | LastName" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterLastName&quot;).ToString]" />
                 <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Job Title" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[in_TransactionItem.SpecificContent(&quot;JobTitle&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterJobTitle&quot;).ToString]" />
                 <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Salary" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[in_TransactionItem.SpecificContent(&quot;Salary&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterSalary&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Building name and Address" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_10" Replace="[in_strBuildingName.Trim+&quot; - &quot;+in_strBuildingAddress]" ReplaceAll="True" Search="[in_Config(&quot;BuildingNameToReplace&quot;).ToString]" />
               </Sequence>
             </ActivityAction>
           </p:WordApplicationScope.Body>
