@@ -15,7 +15,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>881.3333333333334,6558</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>873.3333333333334,6558</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetDataFromWorkday_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -176,7 +176,7 @@
           <ui:IfElseIf DisplayName="Else If | Get Data From Workday Based on TransferType" sap:VirtualizedContainerService.HintSize="536,5609.333333333333" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
             <ui:IfElseIf.ConditionBlocks>
               <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                <ui:IfElseIfBlock BlockType="If" Condition="[in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString.ToLower=&quot;external&quot;]">
+                <ui:IfElseIfBlock BlockType="If" Condition="[in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString.ToLower.Trim=&quot;external&quot;]">
                   <ui:IfElseIfBlock.Then>
                     <Sequence DisplayName="Body | External" sap:VirtualizedContainerService.HintSize="484.6666666666667,2258.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_17">
                       <sap:WorkflowViewStateService.ViewState>
@@ -283,7 +283,7 @@
                     </Sequence>
                   </ui:IfElseIfBlock.Then>
                 </ui:IfElseIfBlock>
-                <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString.ToLower=&quot;internal&quot;]">
+                <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_TransactionItem.SpecificContent(&quot;TransferType&quot;).ToString.ToLower.Trim=&quot;internal&quot;]">
                   <ui:IfElseIfBlock.Then>
                     <Sequence DisplayName="Body | Internal" sap:VirtualizedContainerService.HintSize="484.6666666666667,2891.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_18">
                       <Sequence.Variables>

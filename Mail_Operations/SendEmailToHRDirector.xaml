@@ -15,7 +15,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>881.3333333333334,3652</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>873.3333333333334,3652</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Send_Email_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -220,26 +220,26 @@
               <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForMonday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution_def_Mon" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
                 <ui:AddQueueItem.ItemInformation>
                   <InArgument x:TypeArguments="x:String" x:Key="OfferLetterFileName">[strOfferLetterFileNameSigned]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString.Trim]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString.Trim]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[in_TransactionItem.SpecificContent("DateOfBirth").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString.Trim]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="Address">[in_strAddress]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="City">[in_strCity]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="State">[in_strState]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString.Trim]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
                 </ui:AddQueueItem.ItemInformation>
               </ui:AddQueueItem>
@@ -253,130 +253,130 @@
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Thursday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForThrusday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution | Thursday" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_4" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
               <ui:AddQueueItem.ItemInformation>
                 <InArgument x:TypeArguments="x:String" x:Key="OfferLetterFileName">[strOfferLetterFileNameSigned]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[in_TransactionItem.SpecificContent("DateOfBirth").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Address">[in_strAddress]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="City">[in_strCity]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="State">[in_strState]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Friday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForFriday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution | Friday" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_5" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
               <ui:AddQueueItem.ItemInformation>
                 <InArgument x:TypeArguments="x:String" x:Key="OfferLetterFileName">[strOfferLetterFileNameSigned]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[in_TransactionItem.SpecificContent("DateOfBirth").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Address">[in_strAddress]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="City">[in_strCity]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="State">[in_strState]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Monday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForMonday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution_Mon" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_6" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
               <ui:AddQueueItem.ItemInformation>
                 <InArgument x:TypeArguments="x:String" x:Key="OfferLetterFileName">[strOfferLetterFileNameSigned]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[in_TransactionItem.SpecificContent("DateOfBirth").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Address">[in_strAddress]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="City">[in_strCity]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="State">[in_strState]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Tuesday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForTuesday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution_tues" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_7" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
               <ui:AddQueueItem.ItemInformation>
                 <InArgument x:TypeArguments="x:String" x:Key="OfferLetterFileName">[strOfferLetterFileNameSigned]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[in_TransactionItem.SpecificContent("DateOfBirth").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Address">[in_strAddress]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="City">[in_strCity]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="State">[in_strState]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" x:Key="Wednesday" DeferDate="[Today.AddDays(CInt(in_Config(&quot;DaysToAddForWednesday&quot;).ToString))]" DisplayName="Add Queue Item | For Validating Offer Letter Execution_wed" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_8" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[&quot;OfferLetter_&quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]">
               <ui:AddQueueItem.ItemInformation>
                 <InArgument x:TypeArguments="x:String" x:Key="OfferLetterFileName">[strOfferLetterFileNameSigned]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Email">[in_TransactionItem.SpecificContent("Email").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FirstName">[in_TransactionItem.SpecificContent("FirstName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[in_TransactionItem.SpecificContent("MiddleName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LastName">[in_TransactionItem.SpecificContent("LastName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FullName">[in_TransactionItem.SpecificContent("FullName").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SSN">[in_TransactionItem.SpecificContent("SSN").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[in_TransactionItem.SpecificContent("DateOfBirth").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Address">[in_strAddress]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="City">[in_strCity]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="State">[in_strState]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Zip">[in_strZip]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Phone">[in_strPhoneNumber]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkerSubType">[in_strWorkerSubType]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString.Trim]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="BuildingAddress">[in_strBuildingAddress]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
