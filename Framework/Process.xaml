@@ -95,6 +95,7 @@
       <Variable x:TypeArguments="x:String" Name="strOfferLetterFileName" />
       <Variable x:TypeArguments="s:String[]" Name="ArrBuildingName" />
       <Variable x:TypeArguments="x:String" Name="strBuildingAddress" />
+      <Variable x:TypeArguments="x:String" Name="strWorkdayEmpName" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -267,17 +268,42 @@
           </If>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Fetching the Service date, Address , City, Zip details in Workday" DisplayName="GetDataFromWorkday.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="WorkDay_Operations\GetDataFromWorkday.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strPhoneNumber">[strCanddiatePhone]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strAddress">[strCandidateAddress]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strCity">[strCandidateCity]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strState">[strCandidateState]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strZip">[strCandidateZip]</OutArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strJRNumber">[in_TransactionItem.Reference.ToString]</InArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strJobProfile">[strCandidateJobProfile]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strServiceStartDate">[strServiceStartDate]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strWorkerSubType">[strWorkerSubType]</OutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+              </InArgument>
+              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
+                <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strPhoneNumber">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCanddiatePhone" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strAddress">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateAddress" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strCity">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateCity" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strState">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateState" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strZip">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateZip" />
+              </OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strJRNumber">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.Reference.ToString" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strJobProfile">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCandidateJobProfile" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strServiceStartDate">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strServiceStartDate" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strWorkerSubType">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strWorkerSubType" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strWorkdayEmpName">
+                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strWorkdayEmpName" />
+              </OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -410,19 +436,44 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Sending Email to HR for their approval or signing the document" DisplayName="SendEmailToHRDirector.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,99.33333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Mail_Operations\SendEmailToHRDirector.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Sending Email to HR for their approval or signing the document" DisplayName="SendEmailToHRDirector.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,160.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Mail_Operations\SendEmailToHRDirector.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strAddress">[strCandidateAddress]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strCity">[strCandidateCity]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strState">[strCandidateState]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strZip">[strCandidateZip]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strPhoneNumber">[strCanddiatePhone]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strOfferLetterFilePath">[strOfferLetterFilePath]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strOfferLetterFileName">[strOfferLetterFileName]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strWorkerSubType">[strWorkerSubType]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strBuildingAddress">[strBuildingAddress]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+              </InArgument>
+              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
+                <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strAddress">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateAddress" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strCity">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateCity" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strState">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateState" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strZip">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCandidateZip" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strPhoneNumber">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCanddiatePhone" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strOfferLetterFilePath">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strOfferLetterFilePath" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strOfferLetterFileName">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strOfferLetterFileName" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strWorkerSubType">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strWorkerSubType" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strBuildingAddress">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBuildingAddress" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strWorkdayEmpName">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strWorkdayEmpName" />
+              </InArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">

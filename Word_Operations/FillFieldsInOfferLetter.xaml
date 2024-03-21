@@ -13,7 +13,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>881.3333333333334,3216.6666666666665</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>728,3216.6666666666665</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FillFieldsInOfferLetter_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -193,7 +193,7 @@
                 <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Zip" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[in_strOfferLetterZip]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterZip&quot;).ToString]" />
                 <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | LastName" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterLastName&quot;).ToString]" />
                 <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Job Title" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[in_TransactionItem.SpecificContent(&quot;JobTitle&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterJobTitle&quot;).ToString]" />
-                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Salary" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[in_TransactionItem.SpecificContent(&quot;Salary&quot;).ToString]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterSalary&quot;).ToString]" />
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Salary" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[Convert.ToDecimal(in_TransactionItem.SpecificContent(&quot;Salary&quot;).ToString).ToString(&quot;#,##0&quot;)]" ReplaceAll="True" Search="[in_Config(&quot;OfferLetterSalary&quot;).ToString]" />
                 <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document | Building name and Address" sap:VirtualizedContainerService.HintSize="510,170" sap2010:WorkflowViewState.IdRef="WordReplaceText_10" Replace="[in_strBuildingName.Trim+&quot; - &quot;+in_strBuildingAddress]" ReplaceAll="True" Search="[in_Config(&quot;BuildingNameToReplace&quot;).ToString]" />
               </Sequence>
             </ActivityAction>
