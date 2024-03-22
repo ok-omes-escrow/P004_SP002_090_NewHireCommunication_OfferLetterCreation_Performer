@@ -4,7 +4,7 @@
   "main": "Main.xaml",
   "dependencies": {
     "LIB_GraphAPI_1.0": "[1.0.1-alpha.2]",
-    "LIB_Workday_2023": "[1.0.1-alpha.42]",
+    "LIB_Workday_2023": "[1.0.1-alpha.43]",
     "UiPath.Excel.Activities": "[2.20.2]",
     "UiPath.System.Activities": "[23.4.5]",
     "UiPath.Testing.Activities": "[23.4.1]",
@@ -15,7 +15,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "23.4.5.0",
-  "projectVersion": "1.0.1-alpha.8",
+  "projectVersion": "1.0.1-alpha.9",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
